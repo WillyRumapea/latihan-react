@@ -10,6 +10,7 @@ export default defineConfig({
       form_name: "form_name.html",
       task_app: "task_app.html",
       todo_list: "todo_list.html",
+      todo_list_continues: "todo_list_continues.html",
     },
   },
 });
