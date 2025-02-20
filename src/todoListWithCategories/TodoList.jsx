@@ -1,10 +1,6 @@
-import { useState } from "react";
-
-export default function TodoList({ todos, switchStat, markDel }) {
-  const [cates, setCates] = useState("");
-
+export default function TodoList({ todos, switchStat, markDel, onFiltered }) {
   function handleCates(e) {
-    setCates(e.target.value);
+    onFiltered(e.target.value);
   }
 
   return (
@@ -21,7 +17,7 @@ export default function TodoList({ todos, switchStat, markDel }) {
         {todos.map((todo) => {
           return (
             <li key={todo.id}>
-              {todo.todo}
+              {todo.todo} - {todo.categories}
               <input
                 type="checkbox"
                 onChange={() => switchStat(todo.id)}

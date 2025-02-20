@@ -5,6 +5,7 @@ import { useState } from "react";
 
 export default function TodoApp() {
   const [todos, setTodos] = useState([]);
+  const [filteredCategory, setFilteredCategory] = useState("");
 
   function handleAddTodo(todo, cate) {
     let newTodo = {
@@ -29,13 +30,22 @@ export default function TodoApp() {
     setTodos((befTodo) => befTodo.filter((todo) => todo.id !== id));
   }
 
+  function handleCategories(categories) {
+    setFilteredCategory(categories);
+  }
+
+  const filteredTodos = filteredCategory
+    ? todos.filter((todo) => todo.categories === filteredCategory)
+    : todos;
+
   return (
     <>
       <TodoForm onAddTodo={handleAddTodo} addCate={handleAddTodo}></TodoForm>
       <TodoList
-        todos={todos}
+        todos={filteredTodos}
         switchStat={handleStatChange}
         markDel={handleDelTodo}
+        onFiltered={handleCategories}
       />
     </>
   );
