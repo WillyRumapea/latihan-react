@@ -1,11 +1,29 @@
+import { useState } from "react";
+
 export default function ExpenseList({
   expenses,
   cateFiltered,
   totalExpense,
   priceCate,
+  markDel,
+  markUpd,
 }) {
+  const [editId, setEditId] = useState("");
+  const [newText, setNewText] = useState("");
+
   function filteredCate(e) {
     cateFiltered(e.target.value);
+  }
+
+  function startEdit(expense) {
+    setEditId(expense.id);
+    setNewText(expense.expense);
+  }
+
+  function handleSubmitUpdate() {
+    markUpd(editId, newText);
+    setEditId("");
+    setNewText("");
   }
 
   return (
@@ -23,8 +41,22 @@ export default function ExpenseList({
         {expenses.map((expense) => {
           return (
             <li key={expense.id}>
-              {expense.expense} - {expense.cate}
-              <button>delete</button>
+              {editId === expense.id ? (
+                <>
+                  <input
+                    type="text"
+                    value={newText}
+                    onChange={(e) => setNewText(e.target.value)}
+                  />
+                  <button onClick={handleSubmitUpdate}>update</button>
+                </>
+              ) : (
+                <>
+                  {expense.expense} - {expense.cate}
+                  <button onClick={() => startEdit(expense)}>edit</button>
+                  <button onClick={() => markDel(expense.id)}>delete</button>
+                </>
+              )}
             </li>
           );
         })}

@@ -13,6 +13,8 @@ export default defineConfig({
       todo_list_continues: "todo_list_continues.html",
       wishlist_app: "wishlist_app.html",
       expense_app: "expense_app.html",
+      counter_reducer: "counter_reducer.html",
+      todo_list_reducer: "todo_list_reducer.html",
     },
   },
 });

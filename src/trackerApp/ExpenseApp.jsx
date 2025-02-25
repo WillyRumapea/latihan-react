@@ -19,15 +19,29 @@ export default function ExpenseApp() {
     console.log(expenses);
   }
 
+  function delExpense(id) {
+    setExpenses((befExpense) =>
+      befExpense.filter((expense) => expense.id !== id)
+    );
+  }
+
   function filteredCate(categories) {
     setExpenseFiltered(categories);
   }
 
   function catePrice(categories) {
-    if (!categories) return 0;
+    if (!expenseFiltered) return 0;
     return expenses
       .filter((expense) => expense.cate === categories)
       .reduce((total, item) => total + item, 0);
+  }
+
+  function handleUpdExpense(id, newExpense) {
+    setExpenses((prev) =>
+      prev.map((expense) =>
+        expense.id === id ? { ...expense, expense: newExpense } : expense
+      )
+    );
   }
 
   const filteredExpenses = expenseFiltered
@@ -44,6 +58,8 @@ export default function ExpenseApp() {
         cateFiltered={filteredCate}
         totalExpense={totalPrice}
         priceCate={catePrice(expenseFiltered)}
+        markDel={delExpense}
+        markUpd={handleUpdExpense}
       />
     </div>
   );
