@@ -19,7 +19,7 @@ export default function CounterFactor() {
   const [step, setStep] = useState(1);
 
   function handleStep(e) {
-    setStep(Number(e.target.value || 1));
+    setStep(Number(e.target.value));
   }
 
   return (

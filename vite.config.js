@@ -15,6 +15,7 @@ export default defineConfig({
       expense_app: "expense_app.html",
       counter_reducer: "counter_reducer.html",
       todo_list_reducer: "todo_list_reducer.html",
+      context: "context.html",
     },
   },
 });
